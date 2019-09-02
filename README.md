@@ -1,6 +1,6 @@
 # flowingChart
 
-It takes only one function to animate a customizable chart which takes any kind of
+It only takes one function to animate a customizable chart which takes any kind of
 iterator as input.
 
 ![](img/2019-09-02T04:43:52+02:00_652x330.gif 'Simple and minimalist design for changing data')
@@ -11,7 +11,6 @@ iterator as input.
 - Takes sync and **async** iterators as data input
 - Stops, waits and continues automatically for data
 - All units of the coordinate system are customizable
-- Simple and minimalist design for changing data
 
 ## Api
 
@@ -19,12 +18,12 @@ iterator as input.
 
 #### Options : Object
 
-The following options properties are optional:
+Optionally, the following properties of the _options_ object are available:
 
-- xMax: defines the amount of units on the X-Axis (default: 10)
-- yMax: defines the amount of units on the Y-Axis (default: 300)
-- colorChart: the color of the lines of the chart (default: red)
-- colorAxis: the color of the coordinate axes (default: black)
+- xMax : number, defines the amount of units on the X-Axis (default: 10)
+- yMax : number, defines the amount of units on the Y-Axis (default: 300)
+- colorChart : string, the color of the lines of the chart (default: blue)
+- colorAxis : string, the color of the coordinate axes (default: black)
 
 ## Example
 
@@ -43,4 +42,4 @@ The following options properties are optional:
   </body>
 ```
 
-For more animated and asynchronous examples look into the **examples** folder.
+For more animated and asynchronous examples look into the **example** folder.

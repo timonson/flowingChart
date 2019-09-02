@@ -1,7 +1,7 @@
 export default async function flowingChart(
   iterator,
   ctx,
-  {xMax = 10, yMax = 300, colorChart = 'red', colorAxis = 'black'} = {}
+  {xMax = 10, yMax = 300, colorChart = 'blue', colorAxis = 'black'} = {}
 ) {
   const valuesToDraw = Array(xMax)
   let x0Value = ctx.height

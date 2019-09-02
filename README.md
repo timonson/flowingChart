@@ -7,8 +7,8 @@ iterator as input.
 
 ## Features
 
-- Uses **canvas** and native **generators**
 - Takes sync and **async** iterators as data input
+- Uses the Canvas API
 - Stops, waits and continues automatically for data
 - All units of the coordinate system are customizable
 

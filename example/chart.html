@@ -2,102 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>my charts</title>
+    <title>generate-a-Chart</title>
   </head>
   <body>
-    <canvas id="mainCanvas"> </canvas>
-    <script>
-      function makeCanvasContext(id, canvasWidth, canvasHeight) {
-        const canvas = document.getElementById(id)
-        if (!canvas)
-          throw Error(`canvas element with the id ${id} could not be found!`)
-        if (!canvas.getContext)
-          throw Error(`canvas context with the id ${id} could not be created!`)
-        if (canvasWidth) canvas.width = canvasWidth
-        if (canvasHeight) canvas.height = canvasHeight
-        const ctx = canvas.getContext('2d')
-        ctx.width = canvas.width
-        ctx.height = canvas.height
-        // ctx is 'canvas context'
-        return ctx
-      }
-
-      function random(min = 1, max = 100) {
-        return Math.floor(Math.random() * (max - min + 1)) + min
-      }
-
-      function delay(value, duration = 1000) {
-        return new Promise(function makePromiseInsideDelay(resolve, reject) {
-          setTimeout(function() {
-            if (value instanceof Error) reject(value)
-            resolve(value)
-          }, duration)
-        })
-      }
-
-      function* generator() {
-        let i = 0
-        while (i++ < 200) {
-          const randomNumber = random(0, 300)
-          yield delay(randomNumber, 250)
-        }
-      }
-
-      async function flowingChart(
-        iterator,
-        ctx,
-        {xMax = 10, yMax = 300, colorChart = 'red', colorAxis = 'black'} = {}
-      ) {
-        const valuesToDraw = Array(xMax)
-        let x0Value = ctx.height
-        function getXOffset(value) {
-          return (value / xMax) * ctx.width
-        }
-        function getYOffset(value) {
-          return ctx.height - (value / yMax) * ctx.height
-        }
-        function drawCoordinateSystem(ctx) {
-          ctx.beginPath()
-          ctx.lineWidth = 6.0
-          ctx.strokeStyle = colorAxis
-          ctx.moveTo(0, 0)
-          ctx.lineTo(0, ctx.height)
-          ctx.lineTo(ctx.width, ctx.height)
-          ctx.stroke()
-        }
-        function drawText(ctx, text, x, y) {
-          ctx.font = '14px mono'
-          ctx.fillStyle = 'grey'
-          ctx.fillText(text, x, y)
-        }
-        for await (const value of iterator) {
-          ctx.clearRect(0, 0, ctx.width, ctx.height)
-          drawText(ctx, xMax, ctx.width - 30, ctx.height - 10)
-          drawText(ctx, yMax, 10, 15)
-          drawCoordinateSystem(ctx)
-          ctx.beginPath()
-          ctx.lineWidth = 3.0
-          ctx.strokeStyle = colorChart
-          x0Value = getYOffset(valuesToDraw.shift()) || ctx.height
-          valuesToDraw.push(value)
-          ctx.moveTo(
-            getXOffset(valuesToDraw.findIndex(el => typeof el === 'number')),
-            x0Value
-          )
-          valuesToDraw.forEach((element, index) =>
-            ctx.lineTo(getXOffset(index + 1), getYOffset(element))
-          )
-          ctx.stroke()
-        }
-      }
-
-      const canvasContext = makeCanvasContext('mainCanvas', 600, 300)
-      flowingChart(generator(), canvasContext, {
-        xMax: 20,
-        yMax: 400,
-        colorChart: 'blue',
-        colorAxis: 'black',
-      }) // == chart(canvasContext, generator())
-    </script>
+    <canvas id="mainCanvas"></canvas>
   </body>
+  <script type="module" src="./chart.js"></script>
 </html>

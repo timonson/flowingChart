@@ -5,12 +5,15 @@ export default async function flowingChart(
 ) {
   const valuesToDraw = Array(xMax)
   let x0Value = ctx.height
+
   function getXOffset(value) {
     return (value / xMax) * ctx.width
   }
+
   function getYOffset(value) {
     return ctx.height - (value / yMax) * ctx.height
   }
+
   function drawCoordinateSystem(ctx) {
     ctx.beginPath()
     ctx.lineWidth = 6.0
@@ -20,11 +23,13 @@ export default async function flowingChart(
     ctx.lineTo(ctx.width, ctx.height)
     ctx.stroke()
   }
+
   function drawText(ctx, text, x, y) {
     ctx.font = '14px mono'
     ctx.fillStyle = 'grey'
     ctx.fillText(text, x, y)
   }
+
   for await (const value of iterator) {
     ctx.clearRect(0, 0, ctx.width, ctx.height)
     drawText(ctx, xMax, ctx.width - 30, ctx.height - 10)

@@ -1,6 +1,6 @@
 export default async function flowingChart(
-  ctx,
   iterator,
+  ctx,
   {xMax = 10, yMax = 300, colorChart = 'red', colorAxis = 'black'} = {}
 ) {
   const valuesToDraw = Array(xMax)

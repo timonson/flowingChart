@@ -3,7 +3,7 @@
 It takes only one function to animate a customizable chart which takes any kind of
 iterator as input.
 
-![Simple and minimalist chart for changing data](img/2019-09-02T04:43:52+02:00_652x330.gif)
+![](img/2019-09-02T04:43:52+02:00_652x330.gif 'Simple and minimalist design for changing data')
 
 ## Features
 
@@ -11,10 +11,11 @@ iterator as input.
 - Takes sync and **async** iterators as data input
 - Stops, waits and continues automatically for data
 - All units of the coordinate system are customizable
+- Simple and minimalist design for changing data
 
 ## Api
 
-**flowingChart(canvasContext, iterator, [options])**
+**flowingChart( iterator, canvasContext, [options] )**
 
 #### Options : Object
 
@@ -42,4 +43,4 @@ The following options properties are optional:
   </body>
 ```
 
-For more animated and asynchronous examples look in the _examples_ directory.
+For more animated and asynchronous examples look into the **examples** folder.

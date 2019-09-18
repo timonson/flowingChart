@@ -36,7 +36,7 @@ export default async function flowingChart(
     drawText(ctx, yMax, 10, 15)
     drawCoordinateSystem(ctx)
     ctx.beginPath()
-    ctx.lineWidth = 3.0
+    ctx.lineWidth = 2.0
     ctx.strokeStyle = colorChart
     x0Value = getYOffset(valuesToDraw.shift()) || ctx.height
     valuesToDraw.push(value)

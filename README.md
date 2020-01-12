@@ -1,47 +1,46 @@
 # flowingChart
 
-It only takes one function to animate a customizable chart which takes any kind
-of iterator as input.
+Flowing Chart Web Component
 
-![](img/2019-09-02T04:43:52+02:00_652x330.gif "Simple and minimalist design for changing data")
+![](img/2020-01-12T20:31:57+01:00_680x183.gif "Simple and minimalist design for changing data")
 
 ## Features
 
-- Takes sync and **async** iterators as data input
-- Uses the Canvas API
+- A totally independent **Web Component**
+- CSS Encapsulation with **Shadow DOM**
+- Takes sync or **async** iterators as data input
+- Uses the **Canvas API**
 - Stops, waits and continues automatically for data
-- All units of the coordinate system are customizable
+- Everything is **customizable**
+
+## Quick Start
+
+```shell
+npm start
+```
 
 ## Api
 
-**flowingChart( iterator, canvasContext, [options] )**
-
-#### Options : Object
-
-Optionally, the following properties of the _options_ object are available:
-
-- xMax : number, defines the amount of units on the X-Axis (default: 10)
-- yMax : number, defines the amount of units on the Y-Axis (default: 300)
-- colorChart : string, the color of the lines of the chart (default: blue)
-- colorAxis : string, the color of the coordinate axes (default: black)
+```
+"width",
+"height",
+"xMax",
+"yMax",
+"chartColor",
+"axisColor",
+"lineWidth",
+"iterator"
+```
 
 ## Example
 
-```javascript
-  <body>
-    <script type="module">
-      import flowingChart from "http://cdn.jsdelivr.net/gh/timonson/flowingChart/flowingChart.js"
-      const iterator = "0322325327529429"
-      const canvas = document.createElement("canvas")
-      const ctx = canvas.getContext("2d")
-      ctx.width = 300
-      ctx.height = 150
-      document.body.append(canvas)
-      flowingChart(iterator, ctx, { yMax: 10 })
-    </script>
-  </body>
+```html
+<flowing-chart iterator="0327529439" x-max="10" y-max="10" chart-color="orange">
+</flowing-chart>
 ```
 
 For more animated and asynchronous examples look into the
 [**example**](https://github.com/timonson/flowingChart/tree/master/example)
 folder.
+
+![](img/2020-01-12T20:08:56+01:00_636x316.gif "Simple and minimalist design for changing data")

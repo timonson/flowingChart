@@ -84,7 +84,7 @@ function makeCanvasContext(
   return ctx
 }
 
-function defineSettersAndGetters(thisObj, camelCasePropsAsStrings) {
+function coupleSettersAndGettersToAttributes(thisObj, camelCasePropsAsStrings) {
   function camelCaseToDash(str) {
     return str.replace(/([a-zA-Z])(?=[A-Z])/g, "$1-").toLowerCase()
   }
@@ -104,7 +104,7 @@ function defineFlowingChart(tag) {
   class FlowingChart extends HTMLElement {
     constructor() {
       super()
-      defineSettersAndGetters(this, [
+      coupleSettersAndGettersToAttributes(this, [
         "width",
         "height",
         "xMax",
@@ -125,7 +125,7 @@ function defineFlowingChart(tag) {
       this.canvas = document.createElement("canvas")
       this.attachShadow({ mode: "open" }).appendChild(this.canvas)
       this.ctx = makeCanvasContext(this.canvas, this.width, this.height)
-      this.createCanvasAndDraw()
+      this.drawIterator()
     }
 
     get iterator() {
@@ -133,10 +133,10 @@ function defineFlowingChart(tag) {
     }
     set iterator(iterator) {
       this._iterator = iterator
-      this.createCanvasAndDraw()
+      this.drawIterator()
     }
 
-    createCanvasAndDraw() {
+    drawIterator() {
       if (!this.iterator) return
       this.observer.next([
         this.iterator,
@@ -170,7 +170,7 @@ function defineFlowingChart(tag) {
       this.cancelCheck = { stopDrawing: false }
       if (name === "width" || name === "height")
         makeCanvasContext(this.canvas, this.width, this.height)
-      this.createCanvasAndDraw()
+      this.drawIterator()
     }
   }
   return customElements.define(tag, FlowingChart)

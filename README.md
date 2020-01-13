@@ -10,7 +10,7 @@ Flowing Chart Web Component
 - CSS Encapsulation with **Shadow DOM**
 - Takes sync or **async** iterators as data input
 - Uses the **Canvas API**
-- Stops, waits and continues automatically for data
+- Stops, waits and continues automatically
 - Everything is **customizable**
 
 ## Quick Start
@@ -42,5 +42,3 @@ npm start
 For more animated and asynchronous examples look into the
 [**example**](https://github.com/timonson/flowingChart/tree/master/example)
 folder.
-
-![](img/2020-01-12T20:08:56+01:00_636x316.gif "Simple and minimalist design for changing data")

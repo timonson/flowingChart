@@ -13,6 +13,10 @@ Flowing Chart Web Component
 - Stops, waits and continues automatically
 - Everything is **customizable**
 
+## Demo
+
+Click [**here**](https://timonson.github.io/flowingChart/)
+
 ## Quick Start
 
 ```shell

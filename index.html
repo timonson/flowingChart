@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>generate-a-Chart</title>
+    <link rel="icon" href="data:," />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/gh/timonson/flowingChart@db4609e/components/flowingChart.js"
+    ></script>
+  </head>
+  <body>
+    <flowing-chart
+      iterator="0327529439"
+      x-max="10"
+      y-max="10"
+      chart-color="orange"
+    >
+    </flowing-chart>
+    <flowing-chart id="animated"></flowing-chart>
+    <script type="module">
+      import { generator } from "./delayedIterable.js"
+      animated.iterator = generator([0, 200], 250)
+    </script>
+  </body>
+</html>

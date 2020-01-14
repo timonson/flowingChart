@@ -6,12 +6,12 @@
     <link rel="icon" href="data:," />
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/gh/timonson/flowingChart@db4609e/components/flowingChart.js"
+      src="https://cdn.jsdelivr.net/gh/timonson/flowingChart@d297691/components/flowingChart.js"
     ></script>
   </head>
   <body>
     <flowing-chart
-      iterator="0327529439"
+      iterator="4327529439"
       x-max="10"
       y-max="10"
       chart-color="orange"
@@ -19,8 +19,20 @@
     </flowing-chart>
     <flowing-chart id="animated"></flowing-chart>
     <script type="module">
-      import { generator } from "./delayedIterable.js"
       animated.iterator = generator([0, 200], 250)
+
+      function* generator(range, time) {
+        function random(min = 1, max = 100) {
+          return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        function delay(value, duration = 1000) {
+          return new Promise(function makePromiseInsideDelay(resolve) {
+            setTimeout(() => resolve(value), duration)
+          })
+        }
+        let i = 0
+        while (i++ < 200) yield delay(random(...range), time)
+      }
     </script>
   </body>
 </html>

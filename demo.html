@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>generate-a-Chart</title>
+    <link rel="icon" href="data:," />
+    <script type="module" src="./components/flowingChart.js"></script>
+  </head>
+  <body>
+    <flowing-chart
+      iterator="52748351356"
+      x-max="10"
+      y-max="10"
+      chart-color="orange"
+    >
+    </flowing-chart>
+    <flowing-chart id="animated"></flowing-chart>
+    <script type="module">
+      animated.iterator = generator([0, 200], 250)
+
+      function* generator(range, time) {
+        function random(min = 1, max = 100) {
+          return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        function delay(value, duration = 1000) {
+          return new Promise(function makePromiseInsideDelay(resolve) {
+            setTimeout(() => resolve(value), duration)
+          })
+        }
+        let i = 0
+        while (i++ < 200) yield delay(random(...range), time)
+      }
+    </script>
+  </body>
+</html>

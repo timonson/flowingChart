@@ -5,8 +5,7 @@ async function* drawFlowingChart() {
       ctx,
       { xMax, yMax, chartColor, axisColor, lineWidth, cancelCheck } = {},
     ] = yield
-    const valuesToDraw = Array(xMax).fill(0, 0)
-    let x0Value = ctx.height
+    const valuesToDraw = Array(xMax).fill(undefined)
     function getXOffset(value) {
       return (value / xMax) * ctx.width
     }
@@ -27,12 +26,20 @@ async function* drawFlowingChart() {
       ctx.fillStyle = "grey"
       ctx.fillText(text, x, y)
     }
-    function drawCurvedChart(points) {
+    function drawCurvedChart(points, [x0, y0]) {
       for (var i = 0; i < points.length - 1; i++) {
         var x_mid = (points[i].x + points[i + 1].x) / 2
         var y_mid = (points[i].y + points[i + 1].y) / 2
         var cp_x1 = (x_mid + points[i].x) / 2
         var cp_x2 = (x_mid + points[i + 1].x) / 2
+        if (i === 0) {
+          var sx_mid = (x0 + points[0].x) / 2
+          var sy_mid = (y0 + points[0].y) / 2
+          var scp_x1 = (sx_mid + x0) / 2
+          var scp_x2 = (sx_mid + points[0].x) / 2
+          ctx.quadraticCurveTo(scp_x1, y0, sx_mid, sy_mid)
+          ctx.quadraticCurveTo(scp_x2, points[0].y, points[0].x, points[0].y)
+        }
         ctx.quadraticCurveTo(cp_x1, points[i].y, x_mid, y_mid)
         ctx.quadraticCurveTo(
           cp_x2,
@@ -50,17 +57,16 @@ async function* drawFlowingChart() {
       ctx.beginPath()
       ctx.lineWidth = lineWidth
       ctx.strokeStyle = chartColor
-      x0Value = getYOffset(valuesToDraw.shift()) || ctx.height
-      valuesToDraw.push(value)
-      ctx.moveTo(
-        getXOffset(valuesToDraw.findIndex(el => typeof el === "number")),
-        x0Value
-      )
+      const yValueAtX0 = getYOffset(valuesToDraw.shift()) || ctx.height
+      valuesToDraw.push(parseInt(value))
+      const firstIndex = valuesToDraw.findIndex(el => typeof el === "number")
+      const xValueAtY0 = getXOffset(firstIndex >= 0 ? firstIndex : 0)
+      ctx.moveTo(xValueAtY0, yValueAtX0)
       const points = valuesToDraw.reduce((acc, el, i) => {
         acc.push({ x: getXOffset(i + 1), y: getYOffset(el) })
         return acc
       }, [])
-      drawCurvedChart(points)
+      drawCurvedChart(points, [xValueAtY0, yValueAtX0])
       ctx.stroke()
       if (cancelCheck.stopDrawing) break
     }

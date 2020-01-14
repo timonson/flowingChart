@@ -2,7 +2,7 @@
 
 Flowing Chart Web Component
 
-![](img/2020-01-12T20:31:57+01:00_680x183.gif "Simple and minimalist design for changing data")
+![](img/2020-01-14T11:33:56+01:00_686x190.gif "Simple and minimalist design for changing data")
 
 ## Features
 
@@ -19,9 +19,7 @@ Click [**here**](https://timonson.github.io/flowingChart/)
 
 ## Quick Start
 
-```shell
-npm start
-```
+Just serve `demo.html` to your browser.
 
 ## Api
 
@@ -42,7 +40,3 @@ npm start
 <flowing-chart iterator="0327529439" x-max="10" y-max="10" chart-color="orange">
 </flowing-chart>
 ```
-
-For more animated and asynchronous examples look into the
-[**example**](https://github.com/timonson/flowingChart/tree/master/example)
-folder.

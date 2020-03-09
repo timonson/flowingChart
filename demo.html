@@ -4,20 +4,22 @@
     <meta charset="UTF-8" />
     <title>generate-a-Chart</title>
     <link rel="icon" href="data:," />
-    <script type="module" src="./components/flowingChart.js"></script>
+    <script type="module" src="./flowingChart.js"></script>
   </head>
   <body>
     <flowing-chart
       iterator="52748351356"
       x-max="10"
       y-max="10"
+      width="400"
       chart-color="orange"
+      line-width="3"
+      axis-color="green"
     >
     </flowing-chart>
     <flowing-chart id="animated"></flowing-chart>
     <script type="module">
-      animated.iterator = generator([0, 200], 250)
-
+      animated.iterator = generator([0, 200], 900)
       function* generator(range, time) {
         function random(min = 1, max = 100) {
           return Math.floor(Math.random() * (max - min + 1)) + min

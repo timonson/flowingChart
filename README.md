@@ -6,7 +6,7 @@ Flowing Chart Web Component
 
 ## Features
 
-- A totally independent **Web Component**
+- An independent **Web Component**
 - CSS Encapsulation with **Shadow DOM**
 - Takes sync or **async** iterators as data input
 - Uses the **Canvas API**
@@ -15,23 +15,23 @@ Flowing Chart Web Component
 
 ## Demo
 
-Click [**here**](https://timonson.github.io/flowingChart/)
+[Click](https://timonson.github.io/flowingChart/)
 
 ## Quick Start
 
-Just serve `demo.html` to your browser.
+Serve the `demo.html` to your browser.
 
 ## Api
 
 ```
 "width",
 "height",
-"xMax",
-"yMax",
-"chartColor",
-"axisColor",
-"lineWidth",
 "iterator"
+"x-max",
+"y-max",
+"chart-color",
+"axis-color",
+"line-width",
 ```
 
 ## Example
